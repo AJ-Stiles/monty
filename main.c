@@ -46,6 +46,10 @@ int process_instruction(FILE *file, stack_t **stack, int line_number)
 		}
 		opcode_pint(*stack, line_number);
 	}
+	else if (strcmp(opcode, "pop") == 0)
+	{
+		opcode_pop(stack, line_number);
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);

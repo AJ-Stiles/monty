@@ -58,4 +58,26 @@ void opcode_pint(stack_t *stack, int line_number)
 	printf("%d\n", stack->n);
 }
 
+/**
+ * opcode_pop - Removes the top element of the stack.
+ * @stack: Double pointer to the stack.
+ * @line_number: Current line number.
+ */
+void opcode_pop(stack_t **stack, int line_number)
+{
+	stack_t *temp;
 
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	temp = *stack;
+	*stack = (*stack)->next;
+
+	if (*stack != NULL)
+		(*stack)->prev = NULL;
+
+	free(temp);
+}
