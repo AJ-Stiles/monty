@@ -37,6 +37,15 @@ int process_instruction(FILE *file, stack_t **stack, int line_number)
 	{
 		opcode_pall(stack);
 	}
+	else if (strcmp(opcode, "pint") == 0)
+	{
+		if (*stack == NULL)
+		{
+			fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+			return (-1);
+		}
+		opcode_pint(*stack, line_number);
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);

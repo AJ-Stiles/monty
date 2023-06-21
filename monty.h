@@ -21,6 +21,7 @@ typedef struct stack_s
 /* Function Prototypes */
 void opcode_push(stack_t **stack, int value);
 void opcode_pall(stack_t **stack);
+void opcode_pint(stack_t *stack, int line_number);
 
 #endif /* MONTY_H */
 
