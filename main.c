@@ -14,8 +14,6 @@
 int process_instruction(FILE *file, stack_t **stack, int line_number)
 {
 	char opcode[100];
-	char value_str[100];
-	int value;
 
 	if (fscanf(file, "%99s", opcode) != 1)
 	{
@@ -25,30 +23,23 @@ int process_instruction(FILE *file, stack_t **stack, int line_number)
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		if (fscanf(file, "%99s", value_str) != 1)
-		{
-			fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				return (-1);
-		}
-		value = atoi(value_str);
-		opcode_push(stack, value);
+		return (handle_opcode_push(file, stack, line_number));
 	}
 	else if (strcmp(opcode, "pall") == 0)
 	{
-		opcode_pall(stack);
+		return (handle_opcode_pall(stack));
 	}
 	else if (strcmp(opcode, "pint") == 0)
 	{
-		if (*stack == NULL)
-		{
-			fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-			return (-1);
-		}
-		opcode_pint(*stack, line_number);
+		return (handle_opcode_pint(stack, line_number));
 	}
 	else if (strcmp(opcode, "pop") == 0)
 	{
-		opcode_pop(stack, line_number);
+		return (handle_opcode_pop(stack, line_number));
+	}
+	else if (strcmp(opcode, "swap") == 0)
+	{
+		return (handle_opcode_swap(stack, line_number));
 	}
 	else
 	{
