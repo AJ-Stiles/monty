@@ -41,6 +41,10 @@ int process_instruction(FILE *file, stack_t **stack, int line_number)
 	{
 		return (handle_opcode_swap(stack, line_number));
 	}
+	else if (strcmp(opcode, "add") == 0)
+	{
+		return (handle_opcode_add(stack, line_number));
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);

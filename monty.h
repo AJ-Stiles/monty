@@ -32,6 +32,7 @@ int handle_opcode_pall(stack_t **stack);
 int handle_opcode_pint(stack_t **stack, int line_number);
 int handle_opcode_pop(stack_t **stack, int line_number);
 int handle_opcode_swap(stack_t **stack, int line_number);
+int handle_opcode_add(stack_t **stack, int line_number);
 size_t stack_length(const stack_t *stack);
 void swap_top_two(stack_t **stack);
 
