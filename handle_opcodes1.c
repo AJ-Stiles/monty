@@ -27,3 +27,16 @@ int handle_opcode_add(stack_t **stack, int line_number)
 
 	return (0);
 }
+
+/**
+ * handle_opcode_nop - Handles the nop opcode
+ * @stack: Double pointer to the stack
+ * @line_number: Line number being executed from the Monty file
+ * Return: Always returns 0
+ */
+int handle_opcode_nop(stack_t **stack, int line_number)
+{
+	(void)stack;
+	(void)line_number;
+	return (0);
+}

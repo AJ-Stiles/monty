@@ -12,15 +12,13 @@
  * Return: 0 on success, -1 on failure
  */
 int process_instruction(FILE *file, stack_t **stack, int line_number)
-{
-	char opcode[100];
+{	char opcode[100];
 
 	if (fscanf(file, "%99s", opcode) != 1)
 	{
 		fprintf(stderr, "L%d: Missing opcode\n", line_number);
 		return (-1);
 	}
-
 	if (strcmp(opcode, "push") == 0)
 	{
 		return (handle_opcode_push(file, stack, line_number));
@@ -45,12 +43,15 @@ int process_instruction(FILE *file, stack_t **stack, int line_number)
 	{
 		return (handle_opcode_add(stack, line_number));
 	}
+	else if (strcmp(opcode, "nop") == 0)
+	{
+		return (handle_opcode_nop(stack, line_number));
+	}
 	else
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 		return (-1);
 	}
-
 	return (0);
 }
 
